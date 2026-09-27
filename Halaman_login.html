@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman_login</title>
+    <!-- Menghubungkan file CSS -->
+     <link rel="stylesheet" href="Halaman_login.css">
+</head>
+<body>
+    <!-- kotak utama login -->
+     <div class="kotak login">
+
+        <!-- judul halaman -->
+         <div class="header-login">
+            <h1>Hai Lutfi Mobile Developer</h1>
+            <p>Semoga Harimu menyenangkan</p>
+         </div>
+
+         <!-- form login -->
+          <form id="formlogin">
+
+            <!-- input Email -->
+             <label>Email</label>
+             <input type="email"
+             id="email"
+             placeholder="Masukkan email"
+             autofocus>
+
+             <!-- Input pasword -->
+              <label>pasword</label>
+              <input type="password"
+              id="password"
+              placeholder="Masukkan password" autofocus>
+
+              <!-- Checbox -->
+               <div class="Checbox">
+                <input type="checkbox"
+                id="ingat_saya">
+                <label for="ingat_saya">Ingat saya</label>
+               </div>
+
+               <!-- Tombol Login -->
+                <button type="submit">Login</button>
+          </form>
+
+          <!-- Link lupa pasword -->
+           <div class="lupa_pasword">
+            <a href="#">Lupa pasword</a>
+           </div>
+
+           <hr>
+
+           <!-- Form Daftar -->
+            <div class="Daftar">
+                <p>Belum punya akun?</p>
+                <button id="btnDaftar">
+                    Daftar Sekarang
+                </button>
+            </div>
+
+     </div>
+
+     <!-- Menghubungkan java_Script -->
+      <script src="Halaman_login.js"></script>
+</body>
+</html>

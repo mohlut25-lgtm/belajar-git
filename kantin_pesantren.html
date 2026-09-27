@@ -1,0 +1,2624 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistem Keuangan, Tabungan & Barang Tidak Laku Kantin - PP Miftahul Ulum Kebun Baru</title>
+  
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==============================================================================
+       THEME VARIABLES: LIGHT & DARK MODE
+       Pondok Pesantren Miftahul Ulum Kebun Baru
+       ============================================================================== */
+    :root {
+      /* Palette: Emerald & Golden Pesantren */
+      --primary: #104c38;
+      --primary-dark: #08291e;
+      --primary-light: #166534;
+      --primary-subtle: #dcfce7;
+      
+      --accent: #d97706;
+      --accent-light: #fef3c7;
+      --accent-dark: #92400e;
+      
+      --danger: #dc2626;
+      --danger-light: #fee2e2;
+      
+      --success: #16a34a;
+      --success-light: #dcfce7;
+      
+      --warning: #f59e0b;
+      --warning-light: #fef3c7;
+      
+      --info: #0284c7;
+      --info-light: #e0f2fe;
+
+      /* Light Theme Colors */
+      --bg-body: #f4f6f9;
+      --bg-card: #ffffff;
+      --bg-subtle: #f8fafc;
+      --border-color: #e2e8f0;
+      --border-hover: #cbd5e1;
+      
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-inverse: #ffffff;
+      
+      --header-bg: linear-gradient(135deg, #092e22 0%, #104c38 60%, #1b634b 100%);
+      --card-shadow: 0 4px 14px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03);
+      --card-hover-shadow: 0 12px 24px -6px rgba(16, 76, 56, 0.12), 0 4px 8px -2px rgba(0, 0, 0, 0.06);
+      
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    }
+
+    /* Dark Mode Overrides */
+    [data-theme="dark"] {
+      --bg-body: #0b1120;
+      --bg-card: #151f32;
+      --bg-subtle: #1e293b;
+      --border-color: #26354a;
+      --border-hover: #3b4d66;
+      
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-inverse: #ffffff;
+      
+      --primary: #10b981;
+      --primary-dark: #059669;
+      --primary-light: #34d399;
+      --primary-subtle: rgba(16, 185, 129, 0.15);
+      
+      --accent: #f59e0b;
+      --accent-light: rgba(245, 158, 11, 0.15);
+      --accent-dark: #d97706;
+      
+      --danger: #ef4444;
+      --danger-light: rgba(239, 68, 68, 0.15);
+      
+      --header-bg: linear-gradient(135deg, #061811 0%, #0c2e22 60%, #143d2f 100%);
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+      --card-hover-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.6;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ==============================================================================
+       HEADER & PESANTREN BRANDING
+       ============================================================================== */
+    .main-header {
+      background: var(--header-bg);
+      color: #ffffff;
+      padding: 1.25rem 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .header-container {
+      max-width: 1340px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+
+    .brand-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1.15rem;
+    }
+
+    /* Official Emblem SVG / Image Container */
+    .logo-container {
+      width: 60px;
+      height: 60px;
+      position: relative;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 3px;
+      box-shadow: 0 0 16px rgba(217, 119, 6, 0.35);
+      transition: transform 0.3s ease;
+    }
+
+    .logo-container:hover {
+      transform: scale(1.08) rotate(3deg);
+    }
+
+    .logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .brand-title h1 {
+      font-size: 1.32rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+      margin-bottom: 2px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .brand-badge {
+      font-size: 0.72rem;
+      background: rgba(245, 158, 11, 0.25);
+      color: #fef08a;
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+
+    .brand-title p {
+      font-size: 0.84rem;
+      color: #cbd5e1;
+      font-weight: 400;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+    }
+
+    /* Dark/Light Mode Switch Button */
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      padding: 0.5rem 0.95rem;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      backdrop-filter: blur(8px);
+      user-select: none;
+    }
+
+    .theme-toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-1px);
+    }
+
+    .gas-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.95rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .status-indicator {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background-color: #94a3b8;
+    }
+
+    .status-indicator.online {
+      background-color: #22c55e;
+      box-shadow: 0 0 10px #22c55e;
+    }
+
+    .status-indicator.offline {
+      background-color: #f59e0b;
+      box-shadow: 0 0 10px #f59e0b;
+    }
+
+    /* ==============================================================================
+       APP CONTAINER & NAVIGATION TABS
+       ============================================================================== */
+    .app-container {
+      max-width: 1340px;
+      margin: 1.75rem auto 3.5rem;
+      padding: 0 1.25rem;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 0.4rem;
+      background: var(--bg-card);
+      padding: 0.45rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--card-shadow);
+      margin-bottom: 1.75rem;
+      overflow-x: auto;
+      border: 1px solid var(--border-color);
+    }
+
+    .tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.72rem 1.2rem;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      background: var(--bg-subtle);
+      color: var(--primary);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(16, 76, 56, 0.25);
+    }
+
+    [data-theme="dark"] .tab-btn.active {
+      background: var(--primary);
+      color: #0b1120;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.28s ease-in-out;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==============================================================================
+       STATISTICS CARDS (5 METRICS)
+       ============================================================================== */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      padding: 1.35rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--card-shadow);
+      display: flex;
+      align-items: center;
+      gap: 1.15rem;
+      transition: var(--transition);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--card-hover-shadow);
+      border-color: var(--border-hover);
+    }
+
+    .stat-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.55rem;
+      flex-shrink: 0;
+    }
+
+    .stat-icon.primary { background: var(--primary-subtle); color: var(--primary); }
+    .stat-icon.success { background: var(--success-light); color: var(--success); }
+    .stat-icon.danger { background: var(--danger-light); color: var(--danger); }
+    .stat-icon.accent { background: var(--accent-light); color: var(--accent); }
+    .stat-icon.dark-danger { background: #fee2e2; color: #991b1b; }
+    [data-theme="dark"] .stat-icon.dark-danger { background: rgba(220, 38, 38, 0.2); color: #f87171; }
+
+    .stat-details {
+      overflow: hidden;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-value {
+      font-size: 1.28rem;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ==============================================================================
+       CONTENT BOX & UI COMPONENTS
+       ============================================================================== */
+    .content-box {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--card-shadow);
+      padding: 1.6rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.95rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .box-title {
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .box-actions {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.58rem 1.15rem;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+    }
+    [data-theme="dark"] .btn-primary { color: #0b1120; }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      box-shadow: 0 4px 12px rgba(16, 76, 56, 0.3);
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #ffffff;
+    }
+    .btn-accent:hover {
+      background: var(--accent-dark);
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+    }
+
+    .btn-danger {
+      background: var(--danger);
+      color: #ffffff;
+    }
+    .btn-danger:hover {
+      background: #b91c1c;
+    }
+
+    .btn-success {
+      background: var(--success);
+      color: #ffffff;
+    }
+    .btn-success:hover {
+      background: #15803d;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+    .btn-outline:hover {
+      background: var(--bg-subtle);
+      border-color: var(--border-hover);
+    }
+
+    .btn-sm {
+      padding: 0.35rem 0.72rem;
+      font-size: 0.78rem;
+      border-radius: var(--radius-sm);
+    }
+
+    /* Filter & Search Bar */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1.35rem;
+      background: var(--bg-subtle);
+      padding: 1.1rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex: 1 1 200px;
+    }
+
+    .filter-group label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.58rem 0.88rem;
+      font-family: inherit;
+      font-size: 0.88rem;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(16, 76, 56, 0.15);
+    }
+
+    /* Tables */
+    .table-responsive {
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    .data-table thead {
+      background: var(--bg-subtle);
+    }
+
+    .data-table th {
+      padding: 0.9rem 1rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    .data-table td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      vertical-align: middle;
+    }
+
+    .data-table tbody tr:hover {
+      background: var(--bg-subtle);
+    }
+
+    .data-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.28rem 0.7rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .badge-masuk {
+      background: var(--success-light);
+      color: var(--success);
+    }
+    .badge-keluar {
+      background: var(--danger-light);
+      color: var(--danger);
+    }
+    .badge-tabungan {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+    .badge-kategori {
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+    }
+    .badge-rusak {
+      background: rgba(220, 38, 38, 0.12);
+      color: #b91c1c;
+      border: 1px solid rgba(220, 38, 38, 0.3);
+    }
+    [data-theme="dark"] .badge-rusak { color: #f87171; }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1.25rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .modal-backdrop.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-card {
+      background: var(--bg-card);
+      width: 100%;
+      max-width: 550px;
+      border-radius: var(--radius-lg);
+      box-shadow: 0 20px 35px -5px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      transform: scale(0.95);
+      transition: var(--transition);
+      border: 1px solid var(--border-color);
+    }
+
+    .modal-backdrop.active .modal-card {
+      transform: scale(1);
+    }
+
+    .modal-header {
+      background: var(--primary);
+      color: #ffffff;
+      padding: 1.15rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    [data-theme="dark"] .modal-header { color: #0b1120; }
+    .modal-header.accent { background: var(--accent); color: #ffffff; }
+    .modal-header.danger { background: var(--danger); color: #ffffff; }
+
+    .modal-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .modal-close-btn {
+      background: transparent;
+      border: none;
+      color: inherit;
+      font-size: 1.45rem;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.85;
+      transition: var(--transition);
+    }
+
+    .modal-close-btn:hover {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+      max-height: 75vh;
+      overflow-y: auto;
+    }
+
+    .form-row {
+      margin-bottom: 1.15rem;
+    }
+
+    .form-row label {
+      display: block;
+      font-size: 0.84rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--text-main);
+    }
+
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .modal-footer {
+      padding: 1.1rem 1.5rem;
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .toast {
+      background: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 0.9rem 1.4rem;
+      border-radius: var(--radius-md);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      animation: slideInRight 0.3s ease-out;
+    }
+
+    .toast.success { border-left: 5px solid var(--success); }
+    .toast.error { border-left: 5px solid var(--danger); }
+    .toast.info { border-left: 5px solid var(--info); }
+
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* Struk / Slip Print Preview */
+    .receipt-card {
+      border: 1px dashed var(--border-color);
+      padding: 1.6rem;
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      font-family: 'Courier New', Courier, monospace;
+      color: var(--text-main);
+    }
+
+    .receipt-header {
+      text-align: center;
+      margin-bottom: 1.25rem;
+      border-bottom: 1px dashed var(--border-color);
+      padding-bottom: 0.85rem;
+    }
+
+    .receipt-header h4 {
+      font-size: 1.05rem;
+      font-weight: bold;
+    }
+
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.88rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .receipt-divider {
+      border-top: 1px dashed var(--border-color);
+      margin: 0.75rem 0;
+    }
+
+    /* Guide Box */
+    .guide-card {
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.35rem;
+      margin-bottom: 1rem;
+    }
+
+    .guide-step {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.82rem;
+      flex-shrink: 0;
+    }
+    [data-theme="dark"] .step-num { color: #0b1120; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .form-grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .filter-group {
+        flex: 1 1 100%;
+      }
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printArea, #printArea * {
+        visibility: visible;
+      }
+      #printArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        margin: 0;
+        padding: 20px;
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================= -->
+  <!-- HEADER & OFFICIAL LOGO EMBLEM -->
+  <!-- ========================================================================= -->
+  <header class="main-header">
+    <div class="header-container">
+      <div class="brand-wrapper">
+        <!-- Logo Pondok Pesantren Miftahul Ulum Kebun Baru -->
+        <div class="logo-container" title="Logo Pondok Pesantren Miftahul Ulum Kebun Baru">
+          <img src="https://legacy.kebunbaru.id/assets/media/custom.png" alt="Logo PP Miftahul Ulum Kebun Baru" class="logo-img" onerror="this.onerror=null; this.src='logo.png'; this.onerror=function(){this.src='logo_kebun_baru.png'; this.onerror=function(){this.style.display='none'; document.getElementById('svgLogoFallback').style.display='block';};};" style="display:block;">
+          <svg id="svgLogoFallback" class="logo-img" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none;">
+            <!-- Lingkaran Luar Emas & Hijau Kebun Baru -->
+            <circle cx="60" cy="60" r="57" fill="#0d4231" stroke="#f59e0b" stroke-width="3"/>
+            <circle cx="60" cy="60" r="51" fill="none" stroke="#d97706" stroke-width="1.2" stroke-dasharray="3 2"/>
+            <circle cx="60" cy="60" r="46" fill="#104c38"/>
+            <!-- Bintang-bintang / Ornamen -->
+            <polygon points="60,18 62,23 67,23 63,26 65,31 60,28 55,31 57,26 53,23 58,23" fill="#fef08a"/>
+            <!-- Kubah Masjid & Menara -->
+            <path d="M42 62 C42 46 60 38 60 38 C60 38 78 46 78 62 Z" fill="#f59e0b"/>
+            <path d="M47 62 C47 50 60 44 60 44 C60 44 73 50 73 62 Z" fill="#fef08a"/>
+            <!-- Kitab Terbuka (Al-Qur'an / Kitab Kuning) -->
+            <path d="M36 78 C45 74 57 74 60 78 C63 74 75 74 84 78 C84 86 75 83 60 86 C45 83 36 86 36 78 Z" fill="#fef3c7" stroke="#92400e" stroke-width="1.2"/>
+            <line x1="60" y1="78" x2="60" y2="86" stroke="#92400e" stroke-width="1.5"/>
+            <!-- Pita Tulisan Kebun Baru -->
+            <path d="M28 94 C44 89 76 89 92 94 L88 100 C74 96 46 96 32 100 Z" fill="#d97706" stroke="#fef08a" stroke-width="0.8"/>
+            <text x="60" y="97.5" font-family="'Poppins', sans-serif" font-size="5.2" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">KEBUN BARU</text>
+            <circle cx="60" cy="35" r="2.5" fill="#fef08a"/>
+          </svg>
+        </div>
+        
+        <div class="brand-title">
+          <h1>
+            PP. Miftahul Ulum Kebun Baru
+            <span class="brand-badge">Kantin & Simpanan</span>
+          </h1>
+          <p>Sistem Laporan Kas, Tabungan Harian & Kontrol Barang Tidak Laku</p>
+        </div>
+      </div>
+
+      <div class="header-controls">
+        <!-- Dark Mode / Light Mode Switch Button -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Ubah Mode Gelap / Terang">
+          <span id="themeIcon">🌙</span>
+          <span id="themeText">Mode Gelap</span>
+        </button>
+
+        <!-- Status Koneksi Google Sheets -->
+        <div class="gas-status-badge" id="headerGasStatus">
+          <span class="status-indicator offline" id="statusIndicator"></span>
+          <span id="statusText">Mode Offline / Lokal</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN CONTAINER & TABS -->
+  <!-- ========================================================================= -->
+  <main class="app-container">
+
+    <!-- NAVIGATION TABS -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="tab-dashboard">📊 Dashboard</button>
+      <button class="tab-btn" data-tab="tab-kas">💵 Buku Kas Kantin</button>
+      <button class="tab-btn" data-tab="tab-tabungan">🏦 Tabungan Harian</button>
+      <button class="tab-btn" data-tab="tab-barang">📦 Barang Tidak Laku</button>
+      <button class="tab-btn" data-tab="tab-laporan">📈 Laporan & Ekspor</button>
+      <button class="tab-btn" data-tab="tab-pengaturan">⚙️ Pengaturan & Sheets</button>
+    </nav>
+
+    <!-- 5 STATS CARDS -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon primary">💰</div>
+        <div class="stat-details">
+          <div class="stat-label">Saldo Kas Operasional</div>
+          <div class="stat-value" id="statSaldoKantin">Rp 0</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon success">📥</div>
+        <div class="stat-details">
+          <div class="stat-label">Total Uang Masuk</div>
+          <div class="stat-value" id="statTotalMasuk">Rp 0</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon danger">📤</div>
+        <div class="stat-details">
+          <div class="stat-label">Total Uang Keluar</div>
+          <div class="stat-value" id="statTotalKeluar">Rp 0</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon accent">🏦</div>
+        <div class="stat-details">
+          <div class="stat-label">Saldo Tabungan Kantin</div>
+          <div class="stat-value" id="statTotalTabungan" style="color: var(--accent);">Rp 0</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon dark-danger">📦</div>
+        <div class="stat-details">
+          <div class="stat-label">Barang Tidak Laku (Rugi)</div>
+          <div class="stat-value" id="statTotalBarangTidakLaku" style="color: var(--danger);">Rp 0</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 1: DASHBOARD -->
+    <!-- ========================================================================= -->
+    <section id="tab-dashboard" class="tab-content active">
+      <div class="content-box">
+        <div class="box-header">
+          <h2 class="box-title">⚡ Menu Cepat & Ringkasan Kantin</h2>
+        </div>
+        <div style="display: flex; gap: 0.85rem; flex-wrap: wrap; margin-bottom: 1.6rem;">
+          <button class="btn btn-primary" onclick="openModalTambahKas()">
+            ➕ Catat Kas Kantin (Masuk/Keluar)
+          </button>
+          <button class="btn btn-accent" onclick="openModalTabungan('setor')">
+            📥 Setor Tabungan Harian Kantin
+          </button>
+          <button class="btn btn-danger" onclick="openModalBarangTidakLaku()">
+            📦 Catat Barang Tidak Laku / Kadaluwarsa
+          </button>
+          <button class="btn btn-outline" onclick="openModalTabungan('tarik')">
+            📤 Tarik Dana Tabungan
+          </button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.15rem;">
+          <div style="background: var(--bg-subtle); padding: 1.3rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+            <h4 style="font-size: 0.95rem; margin-bottom: 0.4rem; color: var(--primary);">📝 Transaksi Kas Operasional</h4>
+            <p id="dashTotalTransKas" style="font-size: 1.55rem; font-weight: 700;">0 Transaksi</p>
+            <p style="font-size: 0.82rem; color: var(--text-muted);">Pencatatan uang masuk penjualan & pengeluaran operasional.</p>
+          </div>
+          <div style="background: var(--bg-subtle); padding: 1.3rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+            <h4 style="font-size: 0.95rem; margin-bottom: 0.4rem; color: var(--accent);">🏦 Total Setoran Tabungan Kantin</h4>
+            <p id="dashTotalSetoranTabungan" style="font-size: 1.55rem; font-weight: 700; color: var(--accent);">Rp 0</p>
+            <p style="font-size: 0.82rem; color: var(--text-muted);">Akumulasi dana yang disisihkan/ditabung dari hasil harian kantin.</p>
+          </div>
+          <div style="background: var(--bg-subtle); padding: 1.3rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
+            <h4 style="font-size: 0.95rem; margin-bottom: 0.4rem; color: var(--danger);">📦 Stok Barang Tidak Laku</h4>
+            <p id="dashTotalItemTidakLaku" style="font-size: 1.55rem; font-weight: 700; color: var(--danger);">0 Item</p>
+            <p style="font-size: 0.82rem; color: var(--text-muted);">Total barang kadaluwarsa, rusak, atau tidak laku terjual.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 2: BUKU KAS OPERASIONAL KANTIN -->
+    <!-- ========================================================================= -->
+    <section id="tab-kas" class="tab-content">
+      <div class="content-box">
+        <div class="box-header">
+          <h2 class="box-title">💵 Buku Kas Operasional Kantin</h2>
+          <div class="box-actions">
+            <button class="btn btn-primary" onclick="openModalTambahKas()">
+              ➕ Tambah Transaksi Kas
+            </button>
+            <button class="btn btn-outline" onclick="exportKasCSV()">
+              📥 Unduh Buku Kas (CSV)
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <div class="filter-group">
+            <label>Cari:</label>
+            <input type="text" id="searchKas" class="form-control" placeholder="Cari keterangan, kategori, ID...">
+          </div>
+          <div class="filter-group">
+            <label>Dari:</label>
+            <input type="date" id="filterKasMulai" class="form-control">
+          </div>
+          <div class="filter-group">
+            <label>Sampai:</label>
+            <input type="date" id="filterKasSampai" class="form-control">
+          </div>
+          <div class="filter-group">
+            <label>Kategori:</label>
+            <select id="filterKasKategori" class="form-control">
+              <option value="">Semua Kategori</option>
+              <option value="Penjualan Makanan">Penjualan Makanan</option>
+              <option value="Penjualan Minuman">Penjualan Minuman</option>
+              <option value="Penjualan Snack / Jajanan">Penjualan Snack / Jajanan</option>
+              <option value="Penjualan Alat Tulis / Kitab">Penjualan Alat Tulis / Kitab</option>
+              <option value="Belanja Bahan Baku">Belanja Bahan Baku</option>
+              <option value="Operasional & Kebersihan">Operasional & Kebersihan</option>
+              <option value="Gaji Karyawan Kantin">Gaji Karyawan Kantin</option>
+              <option value="Listrik / Air / Gas">Listrik / Air / Gas</option>
+              <option value="Lain-lain">Lain-lain</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Tabel Kas -->
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Tanggal & ID</th>
+                <th>Kategori</th>
+                <th>Keterangan</th>
+                <th>Uang Masuk</th>
+                <th>Uang Keluar</th>
+                <th>Saldo Kas</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="kasTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 3: TABUNGAN HARIAN KANTIN -->
+    <!-- ========================================================================= -->
+    <section id="tab-tabungan" class="tab-content">
+      <div class="content-box">
+        <div class="box-header">
+          <h2 class="box-title">🏦 Buku Tabungan & Simpanan Harian Kantin</h2>
+          <div class="box-actions">
+            <button class="btn btn-accent" onclick="openModalTabungan('setor')">
+              📥 Setor Tabungan Harian
+            </button>
+            <button class="btn btn-outline" onclick="openModalTabungan('tarik')">
+              📤 Tarik Dana Tabungan
+            </button>
+            <button class="btn btn-outline" onclick="exportTabunganCSV()">
+              📥 Unduh Tabungan (CSV)
+            </button>
+          </div>
+        </div>
+
+        <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+          Catatan penyisihan dana hasil keuntungan harian kantin (tabungan pengembangan, dana cadangan darurat, kas simpanan untuk pesantren, atau perbaikan fasilitas).
+        </p>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <div class="filter-group">
+            <label>Cari:</label>
+            <input type="text" id="searchTabungan" class="form-control" placeholder="Cari keterangan, keperluan tabungan...">
+          </div>
+          <div class="filter-group">
+            <label>Dari Tanggal:</label>
+            <input type="date" id="filterTabunganMulai" class="form-control">
+          </div>
+          <div class="filter-group">
+            <label>Sampai Tanggal:</label>
+            <input type="date" id="filterTabunganSampai" class="form-control">
+          </div>
+        </div>
+
+        <!-- Tabel Tabungan Kantin -->
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Tanggal & ID</th>
+                <th>Jenis Transaksi</th>
+                <th>Keterangan / Sumber / Keperluan</th>
+                <th>Setor Tabungan (+)</th>
+                <th>Tarik Tabungan (-)</th>
+                <th>Saldo Tabungan</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="tabunganTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 4: MENU BARANG YANG TIDAK LAKU / KADALUWARSA / RUSAK -->
+    <!-- ========================================================================= -->
+    <section id="tab-barang" class="tab-content">
+      <div class="content-box">
+        <div class="box-header">
+          <h2 class="box-title" style="color: var(--danger);">📦 Kontrol Barang Tidak Laku & Rusak</h2>
+          <div class="box-actions">
+            <button class="btn btn-danger" onclick="openModalBarangTidakLaku()">
+              ➕ Catat Barang Tidak Laku
+            </button>
+            <button class="btn btn-outline" onclick="exportBarangTidakLakuCSV()">
+              📥 Unduh Laporan (CSV)
+            </button>
+          </div>
+        </div>
+
+        <p style="font-size: 0.86rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+          Mencatat stok makanan/minuman/barang kantin yang tidak laku terjual, kadaluwarsa (expired), rusak, atau basi beserta perhitungan nilai kerugiannya.
+        </p>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <div class="filter-group">
+            <label>Cari Barang:</label>
+            <input type="text" id="searchBarang" class="form-control" placeholder="Cari nama barang, alasan...">
+          </div>
+          <div class="filter-group">
+            <label>Dari Tanggal:</label>
+            <input type="date" id="filterBarangMulai" class="form-control">
+          </div>
+          <div class="filter-group">
+            <label>Sampai Tanggal:</label>
+            <input type="date" id="filterBarangSampai" class="form-control">
+          </div>
+        </div>
+
+        <!-- Tabel Barang Tidak Laku -->
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Tanggal & ID</th>
+                <th>Nama Barang</th>
+                <th>Kategori</th>
+                <th>Jumlah (Qty)</th>
+                <th>Harga Satuan</th>
+                <th>Total Kerugian (Rp)</th>
+                <th>Alasan / Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="barangTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 5: LAPORAN & EKSPOR -->
+    <!-- ========================================================================= -->
+    <section id="tab-laporan" class="tab-content">
+      <div class="content-box">
+        <div class="box-header">
+          <h2 class="box-title">📈 Laporan & Ekspor Data Keuangan Kantin</h2>
+        </div>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          Unduh laporan kas operasional, tabungan harian, dan rekapan barang tidak laku Pondok Pesantren Miftahul Ulum Kebun Baru dalam format berkas CSV/Excel.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.4rem;">
+          <div class="guide-card">
+            <h3 style="color: var(--primary); margin-bottom: 0.5rem;">💵 Laporan Kas Operasional Kantin</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Rincian seluruh transaksi uang masuk harian dan uang keluar operasional.
+            </p>
+            <button class="btn btn-primary" onclick="exportKasCSV()">
+              📥 Ekspor Buku Kas (CSV)
+            </button>
+          </div>
+
+          <div class="guide-card">
+            <h3 style="color: var(--accent); margin-bottom: 0.5rem;">🏦 Laporan Tabungan Harian Kantin</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Rincian penyisihan tabungan harian kantin, penarikan, dan saldo akhir simpanan.
+            </p>
+            <button class="btn btn-accent" onclick="exportTabunganCSV()">
+              📥 Ekspor Tabungan Harian (CSV)
+            </button>
+          </div>
+
+          <div class="guide-card">
+            <h3 style="color: var(--danger); margin-bottom: 0.5rem;">📦 Laporan Barang Tidak Laku</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+              Rekap daftar barang kadaluwarsa/rusak dan total kerugian kantin.
+            </p>
+            <button class="btn btn-danger" onclick="exportBarangTidakLakuCSV()">
+              📥 Ekspor Barang Tidak Laku (CSV)
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 6: PENGATURAN & GOOGLE APPS SCRIPT (kode.gs) -->
+    <!-- ========================================================================= -->
+    <section id="tab-pengaturan" class="tab-content">
+      <div class="content-box">
+        <div class="box-header">
+          <h2 class="box-title">⚙️ Konfigurasi Google Sheets (kode.gs)</h2>
+        </div>
+
+        <div style="margin-bottom: 2rem;">
+          <label style="display:block; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;">
+            URL Web App Google Apps Script:
+          </label>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <input type="url" id="gasUrlInput" class="form-control" style="flex: 1 1 350px;" placeholder="https://script.google.com/macros/s/.../exec">
+            <button class="btn btn-primary" onclick="saveGasConfig()">💾 Simpan URL</button>
+            <button class="btn btn-outline" onclick="testGasConnection()">🔌 Tes Koneksi</button>
+          </div>
+          <small style="color: var(--text-muted); display: block; margin-top: 0.4rem;">
+            Jika URL belum diisi, aplikasi akan berjalan dalam mode <strong>Offline / Penyimpanan Lokal</strong>.
+          </small>
+        </div>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem;">
+          <button class="btn btn-success" onclick="syncAllToGoogleSheet()">
+            ☁️ Sinkronkan Data Lokal ke Google Sheet
+          </button>
+          <button class="btn btn-outline" onclick="fetchAllFromGoogleSheet()">
+            🔄 Tarik Data Terbaru dari Google Sheet
+          </button>
+        </div>
+
+        <!-- Pengaturan Logo Pesantren -->
+        <div class="guide-card" style="margin-bottom: 1.75rem;">
+          <h3 style="font-size: 1.05rem; color: var(--primary); margin-bottom: 0.75rem;">
+            🖼️ Pengaturan Logo Pesantren Kebun Baru
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+            Anda dapat mengganti logo header dan struk cetak menggunakan file foto/gambar logo resmi pesantren dari HP/komputer Anda:
+          </p>
+          <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+            <input type="file" id="logoFileInput" accept="image/*" class="form-control" style="flex: 1 1 280px;" onchange="handleUploadCustomLogo(event)">
+            <button class="btn btn-primary" onclick="document.getElementById('logoFileInput').click()">📁 Pilih Foto Logo</button>
+            <button class="btn btn-outline" onclick="resetCustomLogo()">🔄 Reset ke Logo Standar</button>
+          </div>
+          <small style="color: var(--text-muted); display: block; margin-top: 0.5rem;">
+            *Tip: Anda juga bisa menamai file gambar Anda <code>logo.png</code> dan menyimpannya di folder yang sama.
+          </small>
+        </div>
+
+        <div class="guide-card">
+          <h3 style="font-size: 1.05rem; color: var(--primary); margin-bottom: 1rem;">
+            📖 Panduan Singkat Pemasangan Backend Google Apps Script (kode.gs):
+          </h3>
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div>
+              <strong>Buka Google Spreadsheet:</strong> Kunjungi <a href="https://sheets.new" target="_blank">sheets.new</a> dan beri nama spreadsheet.
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div>
+              <strong>Buka Apps Script Editor:</strong> Klik menu <strong>Ekstensi (Extensions)</strong> &gt; <strong>Apps Script</strong>.
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div>
+              <strong>Salin Kode <code>kode.gs</code>:</strong> Tempelkan seluruh kode dari berkas <code>kode.gs</code> yang sudah diperbarui, lalu klik Simpan (Ctrl + S).
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">4</div>
+            <div>
+              <strong>Deploy sebagai Web App:</strong>
+              Klik <strong>Deploy (Terapkan)</strong> &gt; <strong>New deployment</strong> &gt; Pilih tipe <strong>Web app</strong> (Execute as: <strong>Me</strong>, Access: <strong>Anyone</strong>).
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">5</div>
+            <div>
+              <strong>Salin URL:</strong> Tempel URL Web App ke kolom isian URL di atas, lalu klik <strong>Simpan URL</strong>.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- MODALS -->
+  <!-- ========================================================================= -->
+
+  <!-- 1. Modal Transaksi Kas Kantin -->
+  <div class="modal-backdrop" id="modalKas">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Pencatatan Kas Kantin</h3>
+        <button class="modal-close-btn" onclick="closeModal('modalKas')">&times;</button>
+      </div>
+      <form id="formKas">
+        <div class="modal-body">
+          <div class="form-row">
+            <label>Jenis Transaksi Kas:</label>
+            <div style="display: flex; gap: 1.5rem;">
+              <label style="font-weight: normal; display: flex; align-items: center; gap: 0.4rem; cursor: pointer;">
+                <input type="radio" name="kasJenis" id="kasJenisMasuk" value="masuk" checked>
+                <span style="color: var(--success); font-weight: 600;">📥 Uang Masuk (Pemasukan)</span>
+              </label>
+              <label style="font-weight: normal; display: flex; align-items: center; gap: 0.4rem; cursor: pointer;">
+                <input type="radio" name="kasJenis" id="kasJenisKeluar" value="keluar">
+                <span style="color: var(--danger); font-weight: 600;">📤 Uang Keluar (Pengeluaran)</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-row">
+              <label for="kasTanggal">Tanggal:</label>
+              <input type="date" id="kasTanggal" class="form-control" required>
+            </div>
+            <div class="form-row">
+              <label for="kasNominal" id="kasNominalLabel">Nominal Uang Masuk (Rp):</label>
+              <input type="number" id="kasNominal" class="form-control" min="1" placeholder="Contoh: 150000" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="kasKategori">Kategori Transaksi:</label>
+            <select id="kasKategori" class="form-control" required>
+              <!-- Populated dynamically via JS -->
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="kasKeterangan">Keterangan / Rincian:</label>
+            <textarea id="kasKeterangan" class="form-control" rows="3" placeholder="Contoh: Penjualan sarapan santri & minuman es teh..." required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('modalKas')">Batal</button>
+          <button type="submit" class="btn btn-primary">Simpan Transaksi Kas</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Modal Tabungan Harian Kantin (Setor / Tarik) -->
+  <div class="modal-backdrop" id="modalTabungan">
+    <div class="modal-card">
+      <div class="modal-header accent">
+        <h3 id="modalTabunganTitle">Tabungan Harian Kantin</h3>
+        <button class="modal-close-btn" onclick="closeModal('modalTabungan')">&times;</button>
+      </div>
+      <form id="formTabungan">
+        <div class="modal-body">
+          <div class="form-row">
+            <label>Jenis Transaksi Tabungan:</label>
+            <div style="display: flex; gap: 1.5rem;">
+              <label style="font-weight: normal; display: flex; align-items: center; gap: 0.4rem; cursor: pointer;">
+                <input type="radio" name="tabJenis" id="tabJenisSetor" value="setor" checked>
+                <span style="color: var(--accent); font-weight: 600;">📥 Setor Tabungan (+)</span>
+              </label>
+              <label style="font-weight: normal; display: flex; align-items: center; gap: 0.4rem; cursor: pointer;">
+                <input type="radio" name="tabJenis" id="tabJenisTarik" value="tarik">
+                <span style="color: var(--danger); font-weight: 600;">📤 Tarik Tabungan (-)</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-row">
+              <label for="tabTanggal">Tanggal:</label>
+              <input type="date" id="tabTanggal" class="form-control" required>
+            </div>
+            <div class="form-row">
+              <label for="tabNominal" id="tabNominalLabel">Nominal Setoran (Rp):</label>
+              <input type="number" id="tabNominal" class="form-control" min="1" placeholder="Contoh: 50000" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="tabKeterangan">Keterangan / Sumber / Keperluan:</label>
+            <textarea id="tabKeterangan" class="form-control" rows="3" placeholder="Contoh: Tabungan harian dari sisa omset penjualan hari ini" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('modalTabungan')">Batal</button>
+          <button type="submit" class="btn btn-accent" id="btnSubmitTabungan">Simpan Tabungan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. Modal Barang Tidak Laku / Kadaluwarsa / Rusak -->
+  <div class="modal-backdrop" id="modalBarangTidakLaku">
+    <div class="modal-card">
+      <div class="modal-header danger">
+        <h3>Pencatatan Barang Tidak Laku / Rusak</h3>
+        <button class="modal-close-btn" onclick="closeModal('modalBarangTidakLaku')">&times;</button>
+      </div>
+      <form id="formBarangTidakLaku">
+        <div class="modal-body">
+          <div class="form-row">
+            <label for="btlTanggal">Tanggal Pencatatan:</label>
+            <input type="date" id="btlTanggal" class="form-control" required>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-row">
+              <label for="btlNama">Nama Barang:</label>
+              <input type="text" id="btlNama" class="form-control" placeholder="Contoh: Roti Manis / Susu Kotak" required>
+            </div>
+            <div class="form-row">
+              <label for="btlKategori">Kategori Barang:</label>
+              <select id="btlKategori" class="form-control" required>
+                <option value="Makanan Basah / Roti">Makanan Basah / Roti</option>
+                <option value="Minuman / Susu">Minuman / Susu</option>
+                <option value="Snack / Makanan Ringan">Snack / Makanan Ringan</option>
+                <option value="Bahan Mentah">Bahan Mentah</option>
+                <option value="Alat Tulis / Kitab">Alat Tulis / Kitab</option>
+                <option value="Lain-lain">Lain-lain</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-row">
+              <label for="btlQty">Jumlah Barang (Qty):</label>
+              <input type="number" id="btlQty" class="form-control" min="1" value="1" oninput="calcTotalBTL()" required>
+            </div>
+            <div class="form-row">
+              <label for="btlHarga">Harga Satuan (Rp):</label>
+              <input type="number" id="btlHarga" class="form-control" min="0" placeholder="Contoh: 3000" oninput="calcTotalBTL()" required>
+            </div>
+          </div>
+
+          <div class="form-row" style="background: var(--bg-subtle); padding: 0.75rem 1rem; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:0.85rem; font-weight:600; color:var(--text-muted);">Total Nilai Kerugian:</span>
+              <span id="btlTotalDisplay" style="font-size:1.1rem; font-weight:700; color:var(--danger);">Rp 0</span>
+            </div>
+          </div>
+
+          <div class="form-grid-2" style="margin-top: 1rem;">
+            <div class="form-row">
+              <label for="btlAlasan">Alasan / Kendala:</label>
+              <select id="btlAlasan" class="form-control" required>
+                <option value="Kadaluwarsa / Expired">Kadaluwarsa / Expired</option>
+                <option value="Basi / Rusak">Basi / Rusak</option>
+                <option value="Kemasan Rusak / Bocor">Kemasan Rusak / Bocor</option>
+                <option value="Kurang Diminati Santri">Kurang Diminati Santri</option>
+                <option value="Cacat Produksi">Cacat Produksi</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <label for="btlTindakan">Tindakan / Status:</label>
+              <select id="btlTindakan" class="form-control" required>
+                <option value="Dimusnahkan / Dibuang">Dimusnahkan / Dibuang</option>
+                <option value="Disedekahkan">Disedekahkan</option>
+                <option value="Dikembalikan / Retur Supplier">Dikembalikan / Retur Supplier</option>
+                <option value="Diskon / Cuci Gudang">Diskon / Cuci Gudang</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline" onclick="closeModal('modalBarangTidakLaku')">Batal</button>
+          <button type="submit" class="btn btn-danger">Simpan Barang Tidak Laku</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. Modal Struk Transaksi / Cetak Bukti -->
+  <div class="modal-backdrop" id="modalReceipt">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Bukti Transaksi Resmi</h3>
+        <button class="modal-close-btn" onclick="closeModal('modalReceipt')">&times;</button>
+      </div>
+      <div class="modal-body" id="receiptContent">
+        <!-- Receipt template rendered via JS -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" onclick="closeModal('modalReceipt')">Tutup</button>
+        <button type="button" class="btn btn-primary" onclick="doDirectPrint()">🖨️ Cetak Dokumen</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT LOGIC -->
+  <!-- ========================================================================= -->
+  <script>
+    /**
+     * SISTEM LAPORAN KEUANGAN, TABUNGAN & BARANG TIDAK LAKU KANTIN
+     * Pondok Pesantren Miftahul Ulum Kebun Baru
+     * Frontend JavaScript Application Logic
+     */
+
+    // Storage Keys
+    const STORAGE_KAS = "ppmukb_kas_kantin_data_v2";
+    const STORAGE_TABUNGAN = "ppmukb_tabungan_kantin_data_v2";
+    const STORAGE_BARANG = "ppmukb_barang_tidaklaku_data_v2";
+    const STORAGE_CONFIG = "ppmukb_kantin_config_v2";
+    const STORAGE_THEME = "ppmukb_theme";
+
+    // Global App State
+    let appData = {
+      kas: [],
+      tabungan: [],
+      barangTidakLaku: [],
+      config: {
+        gasUrl: ""
+      }
+    };
+
+    // Initial Realistic Demo Data for Pondok Pesantren Miftahul Ulum Kebun Baru
+    const initialDemoData = {
+      kas: [
+        {
+          id: "KAS-260101",
+          tanggal: getTodayDate(-2),
+          jenis: "masuk",
+          kategori: "Penjualan Makanan",
+          keterangan: "Penjualan sarapan pagi santri & aneka nasi bungkus",
+          masuk: 450000,
+          keluar: 0,
+          saldo: 450000,
+          createdAt: new Date(Date.now() - 172800000).toISOString()
+        },
+        {
+          id: "KAS-260102",
+          tanggal: getTodayDate(-2),
+          jenis: "keluar",
+          kategori: "Belanja Bahan Baku",
+          keterangan: "Kulakan beras, minyak goreng, dan telur ke pasar",
+          masuk: 0,
+          keluar: 250000,
+          saldo: 200000,
+          createdAt: new Date(Date.now() - 170000000).toISOString()
+        },
+        {
+          id: "KAS-260103",
+          tanggal: getTodayDate(-1),
+          jenis: "masuk",
+          kategori: "Penjualan Minuman",
+          keterangan: "Hasil penjualan aneka jus & es teh manis",
+          masuk: 320000,
+          keluar: 0,
+          saldo: 520000,
+          createdAt: new Date(Date.now() - 86400000).toISOString()
+        }
+      ],
+      tabungan: [
+        {
+          id: "TAB-260001",
+          tanggal: getTodayDate(-2),
+          jenis: "setor",
+          keterangan: "Tabungan harian disisihkan dari laba penjualan hari Senin",
+          setor: 75000,
+          tarik: 0,
+          saldo: 75000,
+          createdAt: new Date(Date.now() - 172800000).toISOString()
+        },
+        {
+          id: "TAB-260002",
+          tanggal: getTodayDate(-1),
+          jenis: "setor",
+          keterangan: "Tabungan harian disisihkan dari laba penjualan hari Selasa",
+          setor: 80000,
+          tarik: 0,
+          saldo: 155000,
+          createdAt: new Date(Date.now() - 86400000).toISOString()
+        }
+      ],
+      barangTidakLaku: [
+        {
+          id: "BTL-260001",
+          tanggal: getTodayDate(-1),
+          nama: "Roti Coklat Manis",
+          kategori: "Makanan Basah / Roti",
+          qty: 5,
+          harga: 3000,
+          total: 15000,
+          alasan: "Kadaluwarsa / Expired",
+          tindakan: "Dimusnahkan / Dibuang",
+          createdAt: new Date(Date.now() - 86400000).toISOString()
+        },
+        {
+          id: "BTL-260002",
+          tanggal: getTodayDate(0),
+          nama: "Susu UHT Strawberry 200ml",
+          kategori: "Minuman / Susu",
+          qty: 2,
+          harga: 5500,
+          total: 11000,
+          alasan: "Kemasan Rusak / Bocor",
+          tindakan: "Dikembalikan / Retur Supplier",
+          createdAt: new Date().toISOString()
+        }
+      ]
+    };
+
+    // ==============================================================================
+    // INITIALIZATION & THEME HANDLING
+    // ==============================================================================
+    document.addEventListener("DOMContentLoaded", () => {
+      initTheme();
+      initCustomLogo();
+      loadDataFromStorage();
+      initEventListeners();
+      recalculateAllBalances();
+      renderAll();
+
+      // Set default dates
+      const today = getTodayDate();
+      document.getElementById("kasTanggal").value = today;
+      document.getElementById("tabTanggal").value = today;
+      document.getElementById("btlTanggal").value = today;
+      document.getElementById("filterKasMulai").value = getMonthStartDate();
+      document.getElementById("filterKasSampai").value = today;
+      document.getElementById("filterTabunganMulai").value = getMonthStartDate();
+      document.getElementById("filterTabunganSampai").value = today;
+      document.getElementById("filterBarangMulai").value = getMonthStartDate();
+      document.getElementById("filterBarangSampai").value = today;
+    });
+
+    // Custom Logo Handler
+    const STORAGE_LOGO = "ppmukb_custom_logo_data";
+
+    function initCustomLogo() {
+      const savedLogo = localStorage.getItem(STORAGE_LOGO);
+      if (savedLogo) {
+        applyLogoSource(savedLogo);
+      }
+    }
+
+    function handleUploadCustomLogo(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      if (!file.type.startsWith("image/")) {
+        showToast("Mohon pilih berkas gambar yang valid (JPG, PNG, dsb.)", "error");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const base64Image = e.target.result;
+        try {
+          localStorage.setItem(STORAGE_LOGO, base64Image);
+          applyLogoSource(base64Image);
+          showToast("Logo Pesantren Kebun Baru berhasil diperbarui! 🎉", "success");
+        } catch (err) {
+          showToast("Ukuran logo terlalu besar untuk disimpan di browser.", "error");
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function resetCustomLogo() {
+      localStorage.removeItem(STORAGE_LOGO);
+      const logoImg = document.querySelector(".logo-container img");
+      const svgFallback = document.getElementById("svgLogoFallback");
+      if (logoImg) {
+        logoImg.src = "https://legacy.kebunbaru.id/assets/media/custom.png";
+        logoImg.style.display = "block";
+      }
+      if (svgFallback) {
+        svgFallback.style.display = "none";
+      }
+      showToast("Logo berhasil di-reset ke logo resmi Kebun Baru.", "info");
+    }
+
+    function applyLogoSource(src) {
+      const logoImg = document.querySelector(".logo-container img");
+      const svgFallback = document.getElementById("svgLogoFallback");
+      if (logoImg) {
+        logoImg.src = src;
+        logoImg.style.display = "block";
+      }
+      if (svgFallback) {
+        svgFallback.style.display = "none";
+      }
+    }
+
+    function initTheme() {
+      const savedTheme = localStorage.getItem(STORAGE_THEME) || "light";
+      applyTheme(savedTheme);
+    }
+
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute("data-theme") || "light";
+      const newTheme = currentTheme === "light" ? "dark" : "light";
+      applyTheme(newTheme);
+      localStorage.setItem(STORAGE_THEME, newTheme);
+      showToast(`Mode ${newTheme === 'dark' ? 'Gelap 🌙' : 'Terang ☀️'} diaktifkan!`, "info");
+    }
+
+    function applyTheme(theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      const icon = document.getElementById("themeIcon");
+      const text = document.getElementById("themeText");
+      if (theme === "dark") {
+        icon.textContent = "☀️";
+        text.textContent = "Mode Terang";
+      } else {
+        icon.textContent = "🌙";
+        text.textContent = "Mode Gelap";
+      }
+    }
+
+    function getTodayDate(offsetDays = 0) {
+      const d = new Date();
+      if (offsetDays !== 0) d.setDate(d.getDate() + offsetDays);
+      return d.toISOString().split("T")[0];
+    }
+
+    function getMonthStartDate() {
+      const d = new Date();
+      return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-01`;
+    }
+
+    function formatRupiah(number) {
+      const val = Number(number) || 0;
+      return "Rp " + val.toLocaleString("id-ID");
+    }
+
+    // ==============================================================================
+    // DATA PERSISTENCE & STORAGE
+    // ==============================================================================
+    function loadDataFromStorage() {
+      const localKas = localStorage.getItem(STORAGE_KAS);
+      const localTabungan = localStorage.getItem(STORAGE_TABUNGAN);
+      const localBarang = localStorage.getItem(STORAGE_BARANG);
+      const localConfig = localStorage.getItem(STORAGE_CONFIG);
+
+      if (localConfig) {
+        try {
+          appData.config = JSON.parse(localConfig);
+          document.getElementById("gasUrlInput").value = appData.config.gasUrl || "";
+        } catch (e) {
+          console.error(e);
+        }
+      }
+
+      if (localKas && localTabungan) {
+        try {
+          appData.kas = JSON.parse(localKas);
+          appData.tabungan = JSON.parse(localTabungan);
+          appData.barangTidakLaku = localBarang ? JSON.parse(localBarang) : [];
+        } catch (e) {
+          console.error(e);
+          loadDemoData();
+        }
+      } else {
+        loadDemoData();
+      }
+
+      updateConnectionStatusUI();
+    }
+
+    function loadDemoData() {
+      appData.kas = JSON.parse(JSON.stringify(initialDemoData.kas));
+      appData.tabungan = JSON.parse(JSON.stringify(initialDemoData.tabungan));
+      appData.barangTidakLaku = JSON.parse(JSON.stringify(initialDemoData.barangTidakLaku));
+      saveDataToStorage();
+    }
+
+    function saveDataToStorage() {
+      localStorage.setItem(STORAGE_KAS, JSON.stringify(appData.kas));
+      localStorage.setItem(STORAGE_TABUNGAN, JSON.stringify(appData.tabungan));
+      localStorage.setItem(STORAGE_BARANG, JSON.stringify(appData.barangTidakLaku));
+      localStorage.setItem(STORAGE_CONFIG, JSON.stringify(appData.config));
+    }
+
+    // ==============================================================================
+    // CALCULATION LOGIC
+    // ==============================================================================
+    function recalculateAllBalances() {
+      // 1. Kas Saldo
+      appData.kas.sort((a, b) => new Date(a.tanggal) - new Date(b.tanggal));
+      let runningKas = 0;
+      appData.kas.forEach(k => {
+        runningKas += (Number(k.masuk || 0) - Number(k.keluar || 0));
+        k.saldo = runningKas;
+      });
+
+      // 2. Tabungan Saldo
+      appData.tabungan.sort((a, b) => new Date(a.tanggal) - new Date(b.tanggal));
+      let runningTabungan = 0;
+      appData.tabungan.forEach(t => {
+        runningTabungan += (Number(t.setor || 0) - Number(t.tarik || 0));
+        t.saldo = runningTabungan;
+      });
+
+      saveDataToStorage();
+    }
+
+    // ==============================================================================
+    // UI RENDERING
+    // ==============================================================================
+    function renderAll() {
+      renderSummaryStats();
+      renderKasTable();
+      renderTabunganTable();
+      renderBarangTable();
+    }
+
+    function renderSummaryStats() {
+      let totalMasuk = 0;
+      let totalKeluar = 0;
+      appData.kas.forEach(item => {
+        totalMasuk += Number(item.masuk || 0);
+        totalKeluar += Number(item.keluar || 0);
+      });
+      const saldoKas = totalMasuk - totalKeluar;
+
+      let totalSetorTabungan = 0;
+      let totalTarikTabungan = 0;
+      appData.tabungan.forEach(t => {
+        totalSetorTabungan += Number(t.setor || 0);
+        totalTarikTabungan += Number(t.tarik || 0);
+      });
+      const saldoTabungan = totalSetorTabungan - totalTarikTabungan;
+
+      let totalKerugianBTL = 0;
+      let totalItemBTL = 0;
+      appData.barangTidakLaku.forEach(b => {
+        totalKerugianBTL += Number(b.total || 0);
+        totalItemBTL += Number(b.qty || 0);
+      });
+
+      document.getElementById("statSaldoKantin").textContent = formatRupiah(saldoKas);
+      document.getElementById("statTotalMasuk").textContent = formatRupiah(totalMasuk);
+      document.getElementById("statTotalKeluar").textContent = formatRupiah(totalKeluar);
+      document.getElementById("statTotalTabungan").textContent = formatRupiah(saldoTabungan);
+      document.getElementById("statTotalBarangTidakLaku").textContent = formatRupiah(totalKerugianBTL);
+
+      document.getElementById("dashTotalTransKas").textContent = `${appData.kas.length} Transaksi`;
+      document.getElementById("dashTotalSetoranTabungan").textContent = formatRupiah(totalSetorTabungan);
+      document.getElementById("dashTotalItemTidakLaku").textContent = `${totalItemBTL} Unit (${appData.barangTidakLaku.length} Macam)`;
+    }
+
+    function renderKasTable() {
+      const tbody = document.getElementById("kasTableBody");
+      const search = (document.getElementById("searchKas").value || "").toLowerCase();
+      const startDate = document.getElementById("filterKasMulai").value;
+      const endDate = document.getElementById("filterKasSampai").value;
+      const kategori = document.getElementById("filterKasKategori").value;
+
+      tbody.innerHTML = "";
+
+      const filtered = appData.kas.filter(item => {
+        const matchSearch = item.keterangan.toLowerCase().includes(search) || 
+                            item.kategori.toLowerCase().includes(search) ||
+                            item.id.toLowerCase().includes(search);
+        const matchDate = (!startDate || item.tanggal >= startDate) && (!endDate || item.tanggal <= endDate);
+        const matchKategori = !kategori || item.kategori === kategori;
+        return matchSearch && matchDate && matchKategori;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 2rem;">Tidak ada transaksi kas yang sesuai kriteria.</td></tr>`;
+        return;
+      }
+
+      const displayList = [...filtered].reverse();
+
+      displayList.forEach((item) => {
+        const tr = document.createElement("tr");
+        
+        tr.innerHTML = `
+          <td><strong>${item.tanggal}</strong><br><small style="color:var(--text-muted)">${item.id}</small></td>
+          <td><span class="badge badge-kategori">${item.kategori}</span></td>
+          <td>${item.keterangan}</td>
+          <td style="color: var(--success); font-weight: 600;">${item.masuk > 0 ? formatRupiah(item.masuk) : "-"}</td>
+          <td style="color: var(--danger); font-weight: 600;">${item.keluar > 0 ? formatRupiah(item.keluar) : "-"}</td>
+          <td style="font-weight: 700; color: var(--primary);">${formatRupiah(item.saldo)}</td>
+          <td>
+            <div style="display:flex; gap:0.4rem;">
+              <button class="btn btn-outline btn-sm" onclick="printReceipt('kas', '${item.id}')" title="Cetak Bukti Kas">🖨️</button>
+              <button class="btn btn-danger btn-sm" onclick="deleteKas('${item.id}')" title="Hapus Transaksi">🗑️</button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderTabunganTable() {
+      const tbody = document.getElementById("tabunganTableBody");
+      const search = (document.getElementById("searchTabungan").value || "").toLowerCase();
+      const startDate = document.getElementById("filterTabunganMulai").value;
+      const endDate = document.getElementById("filterTabunganSampai").value;
+
+      tbody.innerHTML = "";
+
+      const filtered = appData.tabungan.filter(item => {
+        const matchSearch = item.keterangan.toLowerCase().includes(search) || 
+                            item.id.toLowerCase().includes(search);
+        const matchDate = (!startDate || item.tanggal >= startDate) && (!endDate || item.tanggal <= endDate);
+        return matchSearch && matchDate;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--text-muted); padding: 2rem;">Belum ada catatan tabungan harian kantin.</td></tr>`;
+        return;
+      }
+
+      const displayList = [...filtered].reverse();
+
+      displayList.forEach(item => {
+        const tr = document.createElement("tr");
+        const isSetor = item.jenis === "setor";
+
+        tr.innerHTML = `
+          <td><strong>${item.tanggal}</strong><br><small style="color:var(--text-muted)">${item.id}</small></td>
+          <td><span class="badge ${isSetor ? 'badge-tabungan' : 'badge-keluar'}">${isSetor ? '📥 Setor Tabungan' : '📤 Tarik Tabungan'}</span></td>
+          <td>${item.keterangan}</td>
+          <td style="color: var(--accent); font-weight: 600;">${item.setor > 0 ? '+' + formatRupiah(item.setor) : "-"}</td>
+          <td style="color: var(--danger); font-weight: 600;">${item.tarik > 0 ? '-' + formatRupiah(item.tarik) : "-"}</td>
+          <td style="font-weight: 700; color: var(--primary); font-size: 0.95rem;">${formatRupiah(item.saldo)}</td>
+          <td>
+            <div style="display:flex; gap:0.4rem;">
+              <button class="btn btn-outline btn-sm" onclick="printReceipt('tabungan', '${item.id}')" title="Cetak Bukti Tabungan">🖨️</button>
+              <button class="btn btn-danger btn-sm" onclick="deleteTabungan('${item.id}')" title="Hapus Tabungan">🗑️</button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderBarangTable() {
+      const tbody = document.getElementById("barangTableBody");
+      const search = (document.getElementById("searchBarang").value || "").toLowerCase();
+      const startDate = document.getElementById("filterBarangMulai").value;
+      const endDate = document.getElementById("filterBarangSampai").value;
+
+      tbody.innerHTML = "";
+
+      const filtered = appData.barangTidakLaku.filter(item => {
+        const matchSearch = item.nama.toLowerCase().includes(search) || 
+                            item.alasan.toLowerCase().includes(search) ||
+                            item.id.toLowerCase().includes(search);
+        const matchDate = (!startDate || item.tanggal >= startDate) && (!endDate || item.tanggal <= endDate);
+        return matchSearch && matchDate;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--text-muted); padding: 2rem;">Belum ada catatan barang tidak laku / rusak.</td></tr>`;
+        return;
+      }
+
+      const displayList = [...filtered].reverse();
+
+      displayList.forEach(item => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+          <td><strong>${item.tanggal}</strong><br><small style="color:var(--text-muted)">${item.id}</small></td>
+          <td><strong style="color:var(--primary); font-size:0.92rem;">${item.nama}</strong></td>
+          <td><span class="badge badge-kategori">${item.kategori}</span></td>
+          <td style="font-weight: 600; text-align:center;">${item.qty} Unit</td>
+          <td>${formatRupiah(item.harga)}</td>
+          <td style="color: var(--danger); font-weight: 700;">${formatRupiah(item.total)}</td>
+          <td>
+            <span class="badge badge-rusak">${item.alasan}</span><br>
+            <small style="color:var(--text-muted); font-weight:500;">Status: ${item.tindakan}</small>
+          </td>
+          <td>
+            <div style="display:flex; gap:0.4rem;">
+              <button class="btn btn-outline btn-sm" onclick="printReceipt('barang', '${item.id}')" title="Cetak Berita Acara">🖨️</button>
+              <button class="btn btn-danger btn-sm" onclick="deleteBarangTidakLaku('${item.id}')" title="Hapus Data">🗑️</button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // ==============================================================================
+    // EVENT LISTENERS & MODAL HANDLERS
+    // ==============================================================================
+    function initEventListeners() {
+      // Tab Navigation
+      document.querySelectorAll(".tab-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+          document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
+          btn.classList.add("active");
+          const targetId = btn.getAttribute("data-tab");
+          document.getElementById(targetId).classList.add("active");
+        });
+      });
+
+      // Filter Listeners
+      document.getElementById("searchKas").addEventListener("input", renderKasTable);
+      document.getElementById("filterKasMulai").addEventListener("change", renderKasTable);
+      document.getElementById("filterKasSampai").addEventListener("change", renderKasTable);
+      document.getElementById("filterKasKategori").addEventListener("change", renderKasTable);
+
+      document.getElementById("searchTabungan").addEventListener("input", renderTabunganTable);
+      document.getElementById("filterTabunganMulai").addEventListener("change", renderTabunganTable);
+      document.getElementById("filterTabunganSampai").addEventListener("change", renderTabunganTable);
+
+      document.getElementById("searchBarang").addEventListener("input", renderBarangTable);
+      document.getElementById("filterBarangMulai").addEventListener("change", renderBarangTable);
+      document.getElementById("filterBarangSampai").addEventListener("change", renderBarangTable);
+
+      // Forms
+      document.getElementById("formKas").addEventListener("submit", handleSaveKas);
+      document.getElementById("formTabungan").addEventListener("submit", handleSaveTabungan);
+      document.getElementById("formBarangTidakLaku").addEventListener("submit", handleSaveBarangTidakLaku);
+
+      // Kas Radio
+      document.querySelectorAll("input[name='kasJenis']").forEach(radio => {
+        radio.addEventListener("change", (e) => {
+          const isMasuk = e.target.value === "masuk";
+          document.getElementById("kasNominalLabel").textContent = isMasuk ? "Nominal Uang Masuk (Rp):" : "Nominal Uang Keluar (Rp):";
+          populateKasKategoriOptions(isMasuk);
+        });
+      });
+
+      // Tabungan Radio
+      document.querySelectorAll("input[name='tabJenis']").forEach(radio => {
+        radio.addEventListener("change", (e) => {
+          const isSetor = e.target.value === "setor";
+          document.getElementById("tabNominalLabel").textContent = isSetor ? "Nominal Setoran (Rp):" : "Nominal Penarikan (Rp):";
+          document.getElementById("btnSubmitTabungan").textContent = isSetor ? "Simpan Setoran Tabungan" : "Simpan Penarikan Tabungan";
+        });
+      });
+    }
+
+    function populateKasKategoriOptions(isMasuk) {
+      const select = document.getElementById("kasKategori");
+      select.innerHTML = "";
+      
+      const kategoriMasuk = ["Penjualan Makanan", "Penjualan Minuman", "Penjualan Snack / Jajanan", "Penjualan Alat Tulis / Kitab", "Kebutuhan Harian Santri", "Infaq / Donasi Kantin", "Lain-lain"];
+      const kategoriKeluar = ["Belanja Bahan Baku", "Belanja Snack & Minuman", "Gaji Karyawan Kantin", "Operasional & Kebersihan", "Listrik / Air / Gas", "Lain-lain"];
+      
+      const list = isMasuk ? kategoriMasuk : kategoriKeluar;
+      list.forEach(k => {
+        const opt = document.createElement("option");
+        opt.value = k;
+        opt.textContent = k;
+        select.appendChild(opt);
+      });
+    }
+
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.add("active");
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove("active");
+    }
+
+    // ------------------------------------------------------------------------------
+    // KAS OPERASIONAL KANTIN
+    // ------------------------------------------------------------------------------
+    function openModalTambahKas() {
+      document.getElementById("formKas").reset();
+      document.getElementById("kasTanggal").value = getTodayDate();
+      document.getElementById("kasJenisMasuk").checked = true;
+      document.getElementById("kasNominalLabel").textContent = "Nominal Uang Masuk (Rp):";
+      populateKasKategoriOptions(true);
+      openModal("modalKas");
+    }
+
+    async function handleSaveKas(e) {
+      e.preventDefault();
+      
+      const tanggal = document.getElementById("kasTanggal").value;
+      const jenis = document.querySelector("input[name='kasJenis']:checked").value;
+      const nominal = Number(document.getElementById("kasNominal").value);
+      const kategori = document.getElementById("kasKategori").value;
+      const keterangan = document.getElementById("kasKeterangan").value;
+
+      if (nominal <= 0) {
+        showToast("Nominal uang harus lebih dari 0", "error");
+        return;
+      }
+
+      const id = "KAS-" + Date.now().toString().slice(-6);
+      const item = {
+        id: id,
+        tanggal: tanggal,
+        jenis: jenis,
+        kategori: kategori,
+        keterangan: keterangan,
+        masuk: jenis === "masuk" ? nominal : 0,
+        keluar: jenis === "keluar" ? nominal : 0,
+        saldo: 0,
+        createdAt: new Date().toISOString()
+      };
+
+      appData.kas.push(item);
+      recalculateAllBalances();
+      renderAll();
+      closeModal("modalKas");
+      showToast("Transaksi kas operasional berhasil disimpan!", "success");
+
+      if (appData.config.gasUrl) {
+        await sendGasRequest("addKas", item);
+      }
+    }
+
+    async function deleteKas(id) {
+      if (!confirm("Apakah Anda yakin ingin menghapus transaksi kas ini?")) return;
+      
+      appData.kas = appData.kas.filter(k => k.id !== id);
+      recalculateAllBalances();
+      renderAll();
+      showToast("Data kas berhasil dihapus", "info");
+
+      if (appData.config.gasUrl) {
+        await sendGasRequest("deleteKas", null, id);
+      }
+    }
+
+    // ------------------------------------------------------------------------------
+    // TABUNGAN HARIAN KANTIN
+    // ------------------------------------------------------------------------------
+    function openModalTabungan(defaultJenis = "setor") {
+      document.getElementById("formTabungan").reset();
+      document.getElementById("tabTanggal").value = getTodayDate();
+      
+      if (defaultJenis === "tarik") {
+        document.getElementById("tabJenisTarik").checked = true;
+        document.getElementById("tabNominalLabel").textContent = "Nominal Penarikan (Rp):";
+        document.getElementById("btnSubmitTabungan").textContent = "Simpan Penarikan Tabungan";
+        document.getElementById("tabKeterangan").placeholder = "Contoh: Penarikan dana tabungan untuk perbaikan etalase kantin / setoran ke pondok";
+      } else {
+        document.getElementById("tabJenisSetor").checked = true;
+        document.getElementById("tabNominalLabel").textContent = "Nominal Setoran (Rp):";
+        document.getElementById("btnSubmitTabungan").textContent = "Simpan Setoran Tabungan";
+        document.getElementById("tabKeterangan").placeholder = "Contoh: Tabungan harian dari sisa omset penjualan / cadangan kas";
+      }
+
+      openModal("modalTabungan");
+    }
+
+    async function handleSaveTabungan(e) {
+      e.preventDefault();
+
+      const tanggal = document.getElementById("tabTanggal").value;
+      const jenis = document.querySelector("input[name='tabJenis']:checked").value;
+      const nominal = Number(document.getElementById("tabNominal").value);
+      const keterangan = document.getElementById("tabKeterangan").value.trim();
+
+      if (nominal <= 0) {
+        showToast("Nominal tabungan harus lebih dari 0", "error");
+        return;
+      }
+
+      let currentTabunganBalance = 0;
+      appData.tabungan.forEach(t => {
+        currentTabunganBalance += (Number(t.setor || 0) - Number(t.tarik || 0));
+      });
+
+      if (jenis === "tarik" && nominal > currentTabunganBalance) {
+        showToast(`Saldo tabungan kantin (${formatRupiah(currentTabunganBalance)}) tidak mencukupi untuk penarikan ${formatRupiah(nominal)}!`, "error");
+        return;
+      }
+
+      const id = "TAB-" + Date.now().toString().slice(-6);
+      const item = {
+        id: id,
+        tanggal: tanggal,
+        jenis: jenis,
+        keterangan: keterangan,
+        setor: jenis === "setor" ? nominal : 0,
+        tarik: jenis === "tarik" ? nominal : 0,
+        saldo: 0,
+        createdAt: new Date().toISOString()
+      };
+
+      appData.tabungan.push(item);
+      recalculateAllBalances();
+      renderAll();
+      closeModal("modalTabungan");
+      showToast("Tabungan harian kantin berhasil dicatat!", "success");
+
+      setTimeout(() => {
+        printReceipt('tabungan', id);
+      }, 400);
+
+      if (appData.config.gasUrl) {
+        await sendGasRequest("addTabungan", item);
+      }
+    }
+
+    async function deleteTabungan(id) {
+      if (!confirm("Hapus catatan tabungan harian kantin ini?")) return;
+
+      appData.tabungan = appData.tabungan.filter(t => t.id !== id);
+      recalculateAllBalances();
+      renderAll();
+      showToast("Catatan tabungan berhasil dihapus", "info");
+
+      if (appData.config.gasUrl) {
+        await sendGasRequest("deleteTabungan", null, id);
+      }
+    }
+
+    // ------------------------------------------------------------------------------
+    // BARANG YANG TIDAK LAKU / KADALUWARSA / RUSAK
+    // ------------------------------------------------------------------------------
+    function openModalBarangTidakLaku() {
+      document.getElementById("formBarangTidakLaku").reset();
+      document.getElementById("btlTanggal").value = getTodayDate();
+      document.getElementById("btlQty").value = 1;
+      document.getElementById("btlTotalDisplay").textContent = "Rp 0";
+      openModal("modalBarangTidakLaku");
+    }
+
+    function calcTotalBTL() {
+      const qty = Number(document.getElementById("btlQty").value || 0);
+      const harga = Number(document.getElementById("btlHarga").value || 0);
+      const total = qty * harga;
+      document.getElementById("btlTotalDisplay").textContent = formatRupiah(total);
+    }
+
+    async function handleSaveBarangTidakLaku(e) {
+      e.preventDefault();
+
+      const tanggal = document.getElementById("btlTanggal").value;
+      const nama = document.getElementById("btlNama").value.trim();
+      const kategori = document.getElementById("btlKategori").value;
+      const qty = Number(document.getElementById("btlQty").value || 0);
+      const harga = Number(document.getElementById("btlHarga").value || 0);
+      const alasan = document.getElementById("btlAlasan").value;
+      const tindakan = document.getElementById("btlTindakan").value;
+      const total = qty * harga;
+
+      if (qty <= 0) {
+        showToast("Jumlah barang harus minimal 1 unit", "error");
+        return;
+      }
+
+      const id = "BTL-" + Date.now().toString().slice(-6);
+      const item = {
+        id: id,
+        tanggal: tanggal,
+        nama: nama,
+        kategori: kategori,
+        qty: qty,
+        harga: harga,
+        total: total,
+        alasan: alasan,
+        tindakan: tindakan,
+        createdAt: new Date().toISOString()
+      };
+
+      appData.barangTidakLaku.push(item);
+      saveDataToStorage();
+      renderAll();
+      closeModal("modalBarangTidakLaku");
+      showToast(`Barang tidak laku "${nama}" berhasil dicatat!`, "success");
+
+      setTimeout(() => {
+        printReceipt('barang', id);
+      }, 400);
+
+      if (appData.config.gasUrl) {
+        await sendGasRequest("addBarangTidakLaku", item);
+      }
+    }
+
+    async function deleteBarangTidakLaku(id) {
+      if (!confirm("Hapus catatan barang tidak laku ini?")) return;
+
+      appData.barangTidakLaku = appData.barangTidakLaku.filter(b => b.id !== id);
+      saveDataToStorage();
+      renderAll();
+      showToast("Data barang tidak laku berhasil dihapus", "info");
+
+      if (appData.config.gasUrl) {
+        await sendGasRequest("deleteBarangTidakLaku", null, id);
+      }
+    }
+
+    // ==============================================================================
+    // CETAK STRUK & LAPORAN
+    // ==============================================================================
+    function printReceipt(type, id) {
+      const content = document.getElementById("receiptContent");
+
+      if (type === "barang") {
+        const item = appData.barangTidakLaku.find(b => b.id === id);
+        if (!item) return;
+
+        content.innerHTML = `
+          <div class="receipt-card" id="printArea">
+            <div class="receipt-header">
+              <h4>PONDOK PESANTREN MIFTAHUL ULUM</h4>
+              <p style="font-size:0.8rem;">KEBUN BARU - KANTIN</p>
+              <p style="font-size:0.75rem; color:#dc2626; font-weight:bold;">BERITA ACARA BARANG TIDAK LAKU / RUSAK</p>
+            </div>
+            <div class="receipt-row"><span>No. Dokumen</span><span>${item.id}</span></div>
+            <div class="receipt-row"><span>Tanggal</span><span>${item.tanggal}</span></div>
+            <div class="receipt-row"><span>Nama Barang</span><strong>${item.nama}</strong></div>
+            <div class="receipt-row"><span>Kategori</span><span>${item.kategori}</span></div>
+            <div class="receipt-divider"></div>
+            <div class="receipt-row"><span>Jumlah (Qty)</span><strong>${item.qty} Unit</strong></div>
+            <div class="receipt-row"><span>Harga Satuan</span><span>${formatRupiah(item.harga)}</span></div>
+            <div class="receipt-row" style="font-size:1.05rem; margin-top:0.4rem;">
+              <span>Total Kerugian</span><strong style="color:#dc2626;">${formatRupiah(item.total)}</strong>
+            </div>
+            <div class="receipt-divider"></div>
+            <div class="receipt-row"><span>Alasan</span><strong>${item.alasan}</strong></div>
+            <div class="receipt-row"><span>Tindakan</span><span>${item.tindakan}</span></div>
+            <div class="receipt-divider"></div>
+            <p style="text-align:center; font-size:0.72rem; color:#64748b; margin-top:0.8rem;">
+              Catatan resmi inventaris barang tidak laku / kadaluwarsa kantin.<br>
+              <em>Pengurus Kantin PP. Miftahul Ulum Kebun Baru</em>
+            </p>
+          </div>
+        `;
+      } else if (type === "tabungan") {
+        const item = appData.tabungan.find(t => t.id === id);
+        if (!item) return;
+
+        const isSetor = item.jenis === "setor";
+
+        content.innerHTML = `
+          <div class="receipt-card" id="printArea">
+            <div class="receipt-header">
+              <h4>PONDOK PESANTREN MIFTAHUL ULUM</h4>
+              <p style="font-size:0.8rem;">KEBUN BARU - KANTIN</p>
+              <p style="font-size:0.75rem; color:#64748b;">BUKTI TABUNGAN HARIAN KANTIN</p>
+            </div>
+            <div class="receipt-row"><span>No. Bukti</span><span>${item.id}</span></div>
+            <div class="receipt-row"><span>Tanggal</span><span>${item.tanggal}</span></div>
+            <div class="receipt-divider"></div>
+            <div class="receipt-row"><span>Jenis Transaksi</span><strong style="text-transform:uppercase; color:${isSetor ? '#16a34a' : '#dc2626'}">${isSetor ? 'SETORAN TABUNGAN' : 'PENARIKAN TABUNGAN'}</strong></div>
+            <div class="receipt-row"><span>Keterangan</span><span>${item.keterangan}</span></div>
+            <div class="receipt-row" style="font-size:1.05rem; margin-top:0.4rem;">
+              <span>Nominal</span><strong>${formatRupiah(isSetor ? item.setor : item.tarik)}</strong>
+            </div>
+            <div class="receipt-divider"></div>
+            <div class="receipt-row"><span>Total Saldo Tabungan Kantin</span><strong>${formatRupiah(item.saldo)}</strong></div>
+            <div class="receipt-divider"></div>
+            <p style="text-align:center; font-size:0.72rem; color:#64748b; margin-top:0.8rem;">
+              Catatan resmi pembukuan kas & tabungan kantin.<br>
+              <em>Jazaakumullahu Khairan Katsiran</em>
+            </p>
+          </div>
+        `;
+      } else if (type === "kas") {
+        const item = appData.kas.find(k => k.id === id);
+        if (!item) return;
+
+        content.innerHTML = `
+          <div class="receipt-card" id="printArea">
+            <div class="receipt-header">
+              <h4>PONDOK PESANTREN MIFTAHUL ULUM</h4>
+              <p style="font-size:0.8rem;">KEBUN BARU - KAS KANTIN</p>
+              <p style="font-size:0.75rem; color:#64748b;">BUKTI KAS MASUK / KELUAR</p>
+            </div>
+            <div class="receipt-row"><span>No. Ref</span><span>${item.id}</span></div>
+            <div class="receipt-row"><span>Tanggal</span><span>${item.tanggal}</span></div>
+            <div class="receipt-row"><span>Kategori</span><span>${item.kategori}</span></div>
+            <div class="receipt-row"><span>Keterangan</span><span>${item.keterangan}</span></div>
+            <div class="receipt-divider"></div>
+            <div class="receipt-row"><span>Uang Masuk</span><span>${formatRupiah(item.masuk)}</span></div>
+            <div class="receipt-row"><span>Uang Keluar</span><span>${formatRupiah(item.keluar)}</span></div>
+            <div class="receipt-divider"></div>
+            <div class="receipt-row"><span>Posisi Saldo Kas</span><strong>${formatRupiah(item.saldo)}</strong></div>
+          </div>
+        `;
+      }
+
+      openModal("modalReceipt");
+    }
+
+    function doDirectPrint() {
+      window.print();
+    }
+
+    // CSV Exports
+    function exportKasCSV() {
+      if (appData.kas.length === 0) {
+        showToast("Belum ada data kas untuk diekspor", "info");
+        return;
+      }
+      let csv = "ID Transaksi,Tanggal,Kategori,Keterangan,Uang Masuk,Uang Keluar,Saldo Kumulatif\n";
+      appData.kas.forEach(k => {
+        csv += `"${k.id}","${k.tanggal}","${k.kategori}","${k.keterangan.replace(/"/g, '""')}",${k.masuk},${k.keluar},${k.saldo}\n`;
+      });
+      downloadFile(csv, `Laporan_Kas_Kantin_PPMU_Kebun_Baru_${getTodayDate()}.csv`, "text/csv;charset=utf-8;");
+    }
+
+    function exportTabunganCSV() {
+      if (appData.tabungan.length === 0) {
+        showToast("Belum ada data tabungan untuk diekspor", "info");
+        return;
+      }
+      let csv = "ID Transaksi,Tanggal,Jenis Tabungan,Keterangan,Setor Tabungan (+),Tarik Tabungan (-),Saldo Tabungan\n";
+      appData.tabungan.forEach(t => {
+        csv += `"${t.id}","${t.tanggal}","${t.jenis === 'setor' ? 'Setor' : 'Tarik'}","${t.keterangan.replace(/"/g, '""')}",${t.setor},${t.tarik},${t.saldo}\n`;
+      });
+      downloadFile(csv, `Laporan_Tabungan_Harian_Kantin_PPMU_Kebun_Baru_${getTodayDate()}.csv`, "text/csv;charset=utf-8;");
+    }
+
+    function exportBarangTidakLakuCSV() {
+      if (appData.barangTidakLaku.length === 0) {
+        showToast("Belum ada data barang tidak laku untuk diekspor", "info");
+        return;
+      }
+      let csv = "ID Barang,Tanggal Catat,Nama Barang,Kategori,Jumlah (Qty),Harga Satuan,Total Kerugian (Rp),Alasan / Kendala,Tindakan / Status\n";
+      appData.barangTidakLaku.forEach(b => {
+        csv += `"${b.id}","${b.tanggal}","${b.nama.replace(/"/g, '""')}","${b.kategori}",${b.qty},${b.harga},${b.total},"${b.alasan}","${b.tindakan}"\n`;
+      });
+      downloadFile(csv, `Laporan_Barang_Tidak_Laku_PPMU_Kebun_Baru_${getTodayDate()}.csv`, "text/csv;charset=utf-8;");
+    }
+
+    function downloadFile(content, fileName, mimeType) {
+      const blob = new Blob([content], { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("Berkas CSV berhasil diunduh!", "success");
+    }
+
+    // ==============================================================================
+    // GOOGLE APPS SCRIPT INTEGRATION (kode.gs API)
+    // ==============================================================================
+    function saveGasConfig() {
+      const url = document.getElementById("gasUrlInput").value.trim();
+      appData.config.gasUrl = url;
+      saveDataToStorage();
+      updateConnectionStatusUI();
+      showToast("URL Google Apps Script berhasil disimpan!", "success");
+    }
+
+    function updateConnectionStatusUI() {
+      const indicator = document.getElementById("statusIndicator");
+      const text = document.getElementById("statusText");
+
+      if (appData.config.gasUrl) {
+        indicator.className = "status-indicator online";
+        text.textContent = "Google Sheets Terhubung";
+      } else {
+        indicator.className = "status-indicator offline";
+        text.textContent = "Mode Offline / Lokal";
+      }
+    }
+
+    async function testGasConnection() {
+      if (!appData.config.gasUrl) {
+        showToast("Silakan masukkan URL Web App Google Apps Script terlebih dahulu", "error");
+        return;
+      }
+
+      showToast("Menguji koneksi ke Google Apps Script...", "info");
+      try {
+        const res = await fetch(`${appData.config.gasUrl}?action=ping`);
+        const data = await res.json();
+        if (data.status === "success") {
+          showToast("✅ " + data.message, "success");
+        } else {
+          showToast("Respons error dari server: " + data.message, "error");
+        }
+      } catch (err) {
+        showToast("Gagal terhubung ke Google Apps Script. Pastikan Web App dideploy dengan akses 'Anyone'.", "error");
+        console.error(err);
+      }
+    }
+
+    async function syncAllToGoogleSheet() {
+      if (!appData.config.gasUrl) {
+        showToast("URL Google Apps Script belum dikonfigurasi!", "error");
+        return;
+      }
+
+      if (!confirm("Sinkronkan seluruh data lokal saat ini ke Google Spreadsheet?")) return;
+
+      showToast("Sedang menyinkronkan seluruh data ke Google Spreadsheet...", "info");
+      try {
+        const payload = {
+          action: "syncAll",
+          data: {
+            kas: appData.kas,
+            tabungan: appData.tabungan,
+            barangTidakLaku: appData.barangTidakLaku
+          }
+        };
+
+        const res = await fetch(appData.config.gasUrl, {
+          method: "POST",
+          body: JSON.stringify(payload)
+        });
+        const result = await res.json();
+        if (result.status === "success") {
+          showToast("✅ " + result.message, "success");
+        } else {
+          showToast("Error: " + result.message, "error");
+        }
+      } catch (err) {
+        console.error(err);
+        showToast("Gagal menyinkronkan ke Google Sheet. Periksa koneksi internet.", "error");
+      }
+    }
+
+    async function fetchAllFromGoogleSheet() {
+      if (!appData.config.gasUrl) {
+        showToast("URL Google Apps Script belum dikonfigurasi!", "error");
+        return;
+      }
+
+      if (!confirm("Tarik data dari Google Spreadsheet? Data di peramban ini akan diperbarui sesuai Google Spreadsheet.")) return;
+
+      showToast("Mengambil data dari Google Spreadsheet...", "info");
+      try {
+        const res = await fetch(`${appData.config.gasUrl}?action=getAllData`);
+        const json = await res.json();
+        if (json.status === "success" && json.data) {
+          if (json.data.kas && json.data.kas.length > 0) appData.kas = json.data.kas;
+          if (json.data.tabungan && json.data.tabungan.length > 0) appData.tabungan = json.data.tabungan;
+          if (json.data.barangTidakLaku && json.data.barangTidakLaku.length > 0) appData.barangTidakLaku = json.data.barangTidakLaku;
+          recalculateAllBalances();
+          renderAll();
+          showToast("✅ Data berhasil diperbarui dari Google Spreadsheet!", "success");
+        } else {
+          showToast("Data di Spreadsheet masih kosong atau format tidak sesuai.", "info");
+        }
+      } catch (err) {
+        console.error(err);
+        showToast("Gagal mengambil data dari Google Sheet.", "error");
+      }
+    }
+
+    async function sendGasRequest(action, data = null, id = null) {
+      try {
+        const payload = { action, data, id };
+        await fetch(appData.config.gasUrl, {
+          method: "POST",
+          body: JSON.stringify(payload)
+        });
+      } catch (e) {
+        console.warn("GAS Background Sync warning:", e);
+      }
+    }
+
+    // ==============================================================================
+    // TOAST NOTIFICATION UTILITY
+    // ==============================================================================
+    function showToast(message, type = "info") {
+      const container = document.getElementById("toastContainer");
+      const toast = document.createElement("div");
+      toast.className = `toast ${type}`;
+      
+      let icon = "ℹ️";
+      if (type === "success") icon = "✅";
+      if (type === "error") icon = "⚠️";
+
+      toast.innerHTML = `<span>${icon}</span> <span>${message}</span>`;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = "0";
+        toast.style.transform = "translateX(100%)";
+        toast.style.transition = "all 0.3s ease";
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
