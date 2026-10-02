@@ -18,7 +18,9 @@ let appData = {
   santri: [],
   mutasi: [],
   config: {
-    gasUrl: ""
+    config: {
+  gasUrl: "https://script.google.com/macros/s/AKfycbz_wMQU3wfwHLLrb1FRU-KUVXWftVa1oQlPqTf_JByr2opbb5yHy7VuEtBmyndGXshxVQ/exec"
+}
   }
 };
 
